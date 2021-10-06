@@ -4,9 +4,9 @@ public class User {
 	private String id;
 	private int money;
 	
-	public User(String id, int mo){
-		this.setId(id);
-		this.money = money;
+	public User(String id, int money){
+		this.id = id;
+		this.setMoney(money);
 	}
 
 	public String getId() {
@@ -15,6 +15,14 @@ public class User {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	

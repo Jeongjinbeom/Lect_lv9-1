@@ -26,7 +26,7 @@ public class Shop {
 			if(sel == 1) {
 				um.join();
 			}else if(sel == 2) {
-				
+				um.remove();
 			}else if(sel == 3) {
 				
 			}else if(sel == 4) {
