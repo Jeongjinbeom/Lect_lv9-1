@@ -28,9 +28,9 @@ public class Shop {
 			}else if(sel == 2) {
 				um.remove();
 			}else if(sel == 3) {
-				
+				um.login();
 			}else if(sel == 4) {
-				
+				um.logout();
 			}else if(sel == 100) {
 				
 			}else if(sel == 0) {
