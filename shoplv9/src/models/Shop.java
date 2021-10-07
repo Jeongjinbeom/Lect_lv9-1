@@ -2,6 +2,7 @@ package models;
 
 import java.util.Scanner;
 
+import controller.ItemManager;
 import controller.UserManager;
 
 public class Shop {
@@ -9,10 +10,9 @@ public class Shop {
 	public static Shop instance = new Shop();
 	
 	UserManager um = new UserManager();
-	
+	ItemManager im = new ItemManager();
 	public void run() {
 		mainRun();
-		loginRun();
 	}
 	
 	public void mainRun() {
@@ -28,7 +28,9 @@ public class Shop {
 			}else if(sel == 2) {
 				um.remove();
 			}else if(sel == 3) {
-				um.login();
+				if(um.login()) {
+					loginRun();
+				}
 			}else if(sel == 4) {
 				um.logout();
 			}else if(sel == 100) {
@@ -57,13 +59,24 @@ public class Shop {
 	}
 
 	private void cartMenu() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private void shopMenu() {
-		// TODO Auto-generated method stub
-		
+		while(true) {
+			String id = um.userList.get(um.getUserLog()).getId();
+			System.out.println("매뉴 선택 : " +"종료 : -1");
+			im.printCate();
+			int cateID = sc.nextInt();
+			if(cateID == -1) {
+				break;
+			}
+			System.out.println("아이템을 선택하세요");
+			im.itemPrint(cateID);
+			int itemID = sc.nextInt();
+			im.addCart(id, cateID, itemID);
+			System.out.println("장바구니에 아이템이 담겼습니다");
+		}
 	}
 	
 }

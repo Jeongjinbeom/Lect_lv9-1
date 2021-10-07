@@ -83,9 +83,25 @@ public class UserManager {
 		}
 	}
 	public void remove() {
-		System.out.println("탈퇴할 id 입력 : ");
-		String id = sc.next();
-		
+		if(this.userLog != -1) {
+			int ch = -1;
+			System.out.println("탈퇴할 id 입력 : ");
+			String id = sc.next();
+			for(int i=0; i<this.userList.size(); i++) {
+				if(id.equals(userList.get(i).getId())) {
+					ch = i;
+					break;
+				}
+			}
+			if(ch == -1) {
+				System.out.println("아이디가 존재하지 않습니다.");
+			}else {
+				System.out.println(id+"님 탈퇴 완료되었습니다.");
+				userList.remove(ch);
+			}
+		}else {
+			System.out.println("로그인 후 탈퇴하세요");
+		}
 		
 	}
 	
