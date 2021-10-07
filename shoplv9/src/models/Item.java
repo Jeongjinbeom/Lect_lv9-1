@@ -14,6 +14,9 @@ public class Item {
 	public String getName() {
 		return name;
 	}
+	public int getPrice() {
+		return price;
+	}
 	public void itemPrint() {
 		System.out.println("["+name+"]"+"["+price+"]"+"["+getCategory()+"]");
 	}

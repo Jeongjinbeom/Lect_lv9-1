@@ -34,7 +34,7 @@ public class Shop {
 			}else if(sel == 4) {
 				um.logout();
 			}else if(sel == 100) {
-				
+				managerMenu();
 			}else if(sel == 0) {
 				break;
 			}else {
@@ -44,6 +44,25 @@ public class Shop {
 		}
 	}
 	
+	public void managerMenu() {
+		while(true) {
+			System.out.println(" 1.아이템관리\n 2.카테고리관리\n 3.유저관리\n 0.뒤로가기");
+			System.out.println("매뉴입력 : ");
+			int sel = sc.nextInt();
+			if(sel == 1) {
+				
+			}else if(sel == 2) {
+				
+			}else if(sel == 3) {
+				
+			}else if(sel == 0) {
+				break;
+			}else {
+				System.out.println("잘못된 선택입니다.");
+			}
+		}
+	}
+
 	public void loginRun() {
 		while (true) {
 			System.out.println(" 1.쇼핑\n2.장바구니목록\n0.뒤로가기\n");
@@ -59,7 +78,28 @@ public class Shop {
 	}
 
 	private void cartMenu() {
-		
+		while(true) {
+			System.out.println(" 1.장바구니\n 2.삭제\n 3.구입\n 0.뒤로가기");
+			int sel = sc.nextInt();
+			
+			String ID = um.userList.get(um.getUserLog()).getId();
+			int money = um.userList.get(um.getUserLog()).getMoney();
+			User u = new User(ID, money);
+			
+			if(sel == 1) {
+				im.printJang(u);
+			}else if(sel == 2) {
+				im.printJang(u);
+				im.removeCart(u);
+			}else if(sel == 3) {
+				im.printJang(u);
+				im.getItem(u);
+			}else if(sel == 0) {
+				break;
+			}else {
+				System.out.println("잘못된 매뉴선택입니다.");
+			}
+		}
 	}
 
 	private void shopMenu() {
