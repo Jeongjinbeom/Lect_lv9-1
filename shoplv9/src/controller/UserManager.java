@@ -111,5 +111,10 @@ public class UserManager {
 		}
 
 	}
+	
+	public void addUser(User u) {
+		this.userList.add(u);
+	}
+	
 
 }

@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import models.Cart;
+import models.Item;
+import models.User;
+
 public class FileManager {
 	public static FileManager instance = new FileManager();
 	private UserManager um = UserManager.instance;
@@ -75,6 +79,69 @@ public class FileManager {
 	}
 	
 	public void load() {
+		
+		// userList
+		try {
+			file = new File(userListFileName);
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			
+			String data = br.readLine();
+			while(data != null) {
+				String info[] = data.split("/");
+				String id = info[0];
+				int money = Integer.parseInt(info[1]);
+				um.addUser(new User(id, money));
+				data = br.readLine();
+			}
+			fr.close();
+			br.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		try {
+			file = new File(itemListFileName);
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			
+			String data = br.readLine();
+			while(data != null) {
+				String info[] = data.split("/");
+				String name = info[0];
+				int price = Integer.parseInt(info[1]);
+				String category = info[2];
+				Item item = new Item(name, price, category);
+				im.addItem(item);
+				data = br.readLine();
+			}
+			fr.close();
+			br.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		try {
+			file = new File(jangListFileName);
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			
+			String data = br.readLine();
+			while(data != null) {
+				String info[] = data.split("/");
+				
+				String userID = info[0];
+				String ItemName = info[1];
+				
+				Cart cart = new Cart();
+				im.addCart(cart);
+				data = br.readLine();
+			}
+			fr.close();
+			br.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 	}
 	

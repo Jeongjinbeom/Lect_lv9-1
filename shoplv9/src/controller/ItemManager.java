@@ -28,6 +28,14 @@ public class ItemManager {
 		return this.jangList.get(idx);
 	}
 	
+	public void addItem(Item I) {
+		this.itemList.add(I);
+	}
+	
+	public void addCart(Cart c) {
+		this.jangList.add(c);
+	}
+	
 	
 	public ItemManager() {
 		itemMenu();
