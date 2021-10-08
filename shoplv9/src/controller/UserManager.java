@@ -13,6 +13,13 @@ public class UserManager {
 	public Vector<User> userList = new Vector<User>();
 	private int userLog = -1;
 
+	public int getUserListSize() {
+		return this.userList.size();
+	}
+	public User getUser(int idx) {
+		return this.userList.get(idx);
+	}
+	
 	public int getUserLog() {
 		return userLog;
 	}
@@ -63,7 +70,7 @@ public class UserManager {
 				}
 			}
 			if (ch == -1) {
-				User temp = new User(id, 1000);
+				User temp = new User(id, 30000);
 				userList.add(temp);
 				System.out.println("가입성공!" + temp.getId() + "님 가입을 축하합니다.");
 			} else {

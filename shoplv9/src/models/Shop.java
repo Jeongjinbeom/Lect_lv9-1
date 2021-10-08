@@ -2,13 +2,14 @@ package models;
 
 import java.util.Scanner;
 
+import controller.FileManager;
 import controller.ItemManager;
 import controller.UserManager;
-
+	
 public class Shop {
 	Scanner sc = new Scanner(System.in);
 	public static Shop instance = new Shop();
-
+	FileManager fm = new FileManager();
 	UserManager um = new UserManager();
 	ItemManager im = new ItemManager();
 
@@ -21,7 +22,7 @@ public class Shop {
 			um.print();
 			System.out.println();
 			System.out.println("=======SuperMaket======");
-			System.out.println(" 1)가입\n 2)탈퇴\n 3)로그인\n 4)로그아웃\n 100)관리자모드\n 0)종료");
+			System.out.println(" 1)가입\n 2)탈퇴\n 3)로그인\n 4)로그아웃\n 5)저장\n 6)로드\n 100)관리자모드\n 0)종료");
 			System.out.println("매뉴선택 : ");
 			int sel = sc.nextInt();
 			if (sel == 1) {
@@ -34,7 +35,12 @@ public class Shop {
 				}
 			} else if (sel == 4) {
 				um.logout();
-			} else if (sel == 100) {
+			}else if (sel == 5) {
+				fm.sava();
+			}else if (sel == 6) {
+				fm.load();
+			}
+			else if (sel == 100) {
 				managerMenu();
 			} else if (sel == 0) {
 				break;
@@ -105,7 +111,7 @@ public class Shop {
 	public void managerMenu() {
 
 		while (true) {
-			System.out.println(" 1.아이템관리\n 2.카테고리관리\n 3.유저관리\n 0.뒤로가기");
+			System.out.println(" 1.아이템관리\n 2.카테고리관리\n 3.유저관리\n 4.매출현황\n 0.뒤로가기");
 			System.out.println("매뉴입력 : ");
 			int sel = sc.nextInt();
 			if (sel == 1) {
@@ -114,7 +120,9 @@ public class Shop {
 				categoryMenu();
 			} else if (sel == 3) {
 				userMenu();
-			} else if (sel == 0) {
+			} else if(sel == 4){
+				System.out.println("총 매출 : "+ im.getSum()+"원입니다.");
+			}else if (sel == 0) {
 				break;
 			} else {
 				System.out.println("잘못된 선택입니다.");

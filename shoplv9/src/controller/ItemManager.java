@@ -8,15 +8,37 @@ import models.Item;
 import models.User;
 
 public class ItemManager {
+	public static ItemManager instance = new ItemManager();
 	private Vector<Item> itemList = new Vector<Item>();
 	private Vector<Cart> jangList = new Vector<Cart>();
 	private Vector<String> category = new Vector<String>();
 	Scanner scan = new Scanner(System.in);
-
+	private int sum;
+	
+	public int getItemListSize() {
+		return this.itemList.size();
+	}
+	public int getJangListSize() {
+		return this.jangList.size();
+	}
+	public Item getItem(int idx) {
+		return this.itemList.get(idx);
+	}
+	public Cart getCart(int idx) {
+		return this.jangList.get(idx);
+	}
+	
+	
 	public ItemManager() {
 		itemMenu();
 	}
+	public int getSum() {
+		return sum;
+	}
 
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 	private void itemMenu() {
 		this.category.add("과자");
 		this.category.add("생선");
@@ -105,23 +127,29 @@ public class ItemManager {
 	}
 
 	public void getItem(User u) {
-		int money = 0;
+		int total = 0;	
 		for (int i = 0; i < this.jangList.size(); i++) {
 			String name;
 			if (this.jangList.get(i).getUserID().equals(u.getId())) {
 				name = this.jangList.get(i).getItemName();
 				for (int j = 0; j < this.itemList.size(); j++) {
 					if (this.itemList.get(j).getName().equals(name)) {
-						money += this.itemList.get(j).getPrice();
+						total += this.itemList.get(j).getPrice();
 					}
 				}
 			}
 		}
-		System.out.println("총 금액 " + money + "원 입니다 구매하시겠습니까 ? 1)예 2)아니오");
+
+
+
+		System.out.println("총 금액 " + total + "원 입니다 구매하시겠습니까 ? 1)예 2)아니오");
 		int sel = scan.nextInt();
 		if (sel == 1) {
-			u.setMoney(u.getMoney() - money);
+			u.setMoney(u.getMoney() - total);
 			System.out.println("구매완료");
+			this.setSum(this.getSum() + total);
+			this.jangList.clear();
+			
 		} else if (sel == 2) {
 			return;
 		} else {
@@ -177,5 +205,7 @@ public class ItemManager {
 		}
 		this.category.remove(index);
 	}
+
+	
 
 }
