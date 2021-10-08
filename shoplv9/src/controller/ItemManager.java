@@ -119,14 +119,63 @@ public class ItemManager {
 		}
 		System.out.println("총 금액 " + money + "원 입니다 구매하시겠습니까 ? 1)예 2)아니오");
 		int sel = scan.nextInt();
-		if(sel == 1) {
-			u.setMoney(u.getMoney()-money);
+		if (sel == 1) {
+			u.setMoney(u.getMoney() - money);
 			System.out.println("구매완료");
-		}else if(sel == 2) {
+		} else if (sel == 2) {
 			return;
-		}else {
+		} else {
 			System.out.println("잘못된 매뉴선택입니다.");
 		}
+	}
+
+	public void addItem() {
+		System.out.println("아이템 이름 입력 : ");
+		String name = scan.next();
+		System.out.println("아이템 가격 입력 : ");
+		int price = scan.nextInt();
+		printCate();
+		System.out.println("카테고리 번호 입력 : ");
+		int category = scan.nextInt();
+		Item temp = new Item(name, price, this.category.get(category));
+		this.itemList.add(temp);
+	}
+
+	public void removeItem() {
+		int ch = -1;
+		printItem();
+		System.out.println("삭제할 아이템 입력 : ");
+		String name = scan.next();
+		for (int i = 0; i < this.itemList.size(); i++) {
+			if (this.itemList.get(i).getName().equals(name)) {
+				ch = i;
+			}
+		}
+		if (ch == -1) {
+			System.out.println("존재하지않는 아이템입니다.");
+		} else {
+			this.itemList.remove(ch);
+			System.out.println("삭제가 완료되었습니다.");
+		}
+	}
+
+	public void addCategory() {
+		System.out.println("카테고리 입력 : ");
+		String name = scan.next();
+		this.category.add(name);
+	}
+
+	public void removeCategory() {
+		printCate();
+		System.out.println("번호를 입력 : ");
+		int index = scan.nextInt();
+		for (int i = 0; i < this.itemList.size(); i++) {
+			if (this.category.get(index).equals(itemList.get(i).getCategory())) {
+				this.itemList.remove(i);
+			}
+
+		}
+		this.category.remove(index);
 	}
 
 }

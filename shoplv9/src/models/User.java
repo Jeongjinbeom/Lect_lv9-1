@@ -3,8 +3,8 @@ package models;
 public class User {
 	private String id;
 	private int money;
-	
-	public User(String id, int money){
+
+	public User(String id, int money) {
 		this.id = id;
 		this.money = money;
 	}

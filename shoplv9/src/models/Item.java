@@ -5,20 +5,22 @@ public class Item {
 	private int price;
 	private String category;
 
-	public Item(String name, int price, String category){
+	public Item(String name, int price, String category) {
 		this.name = name;
 		this.price = price;
 		this.category = category;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void itemPrint() {
-		System.out.println("["+name+"]"+"["+price+"]"+"["+getCategory()+"]");
+		System.out.println("[" + name + "]" + "[" + price + "]" + "[" + getCategory() + "]");
 	}
 
 	public String getCategory() {
@@ -29,5 +31,4 @@ public class Item {
 		this.category = category;
 	}
 
-	
 }
