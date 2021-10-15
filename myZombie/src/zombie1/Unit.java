@@ -1,11 +1,12 @@
 package zombie1;
 
-// 추상클래스 생성
+
 
 interface Damage {
 	public void damage(Unit target);
 }
 
+//추상클래스 생성
 abstract public class Unit implements Damage {
 
 	private String name;
