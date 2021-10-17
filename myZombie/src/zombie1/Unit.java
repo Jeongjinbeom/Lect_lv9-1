@@ -1,7 +1,5 @@
 package zombie1;
 
-
-
 interface Damage {
 	public void damage(Unit target);
 }
@@ -64,7 +62,7 @@ abstract public class Unit implements Damage {
 	}
 
 	public void unitPrint() {
-		System.out.println("[이름] : " + name + " [체력] : " + hp + "[공격력] : " + hit + "[위치] : " + move);
+		System.out.println("[이름] : " + name + " [체력] : " + hp + "[공격력] : " + hit + "[위치] : " + move + "[방어력] : " + def);
 	}
 
 	public void damage(Unit target) {
