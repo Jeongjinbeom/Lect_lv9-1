@@ -6,7 +6,6 @@ public class Nemo {
 	private int x, y, width, height;
 	private Color c;
 
-	
 	public Nemo(int x, int y, int width, int height, Color c) {
 		this.x = x;
 		this.y = y;

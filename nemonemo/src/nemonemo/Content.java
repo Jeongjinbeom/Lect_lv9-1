@@ -32,7 +32,6 @@ public class Content extends Util {
 		setLayout(null);
 		setBounds(0, 0, 900, 700);
 
-		
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
@@ -81,8 +80,6 @@ public class Content extends Util {
 		}
 	}
 
-	
-	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -148,11 +145,11 @@ public class Content extends Util {
 
 			xx[2] = n.getX() + n.getWidth() / 2;
 			yy[2] = n.getY() + n.getHeight();
-			
+
 			g.drawPolygon(xx, yy, 3);
 		}
 		// circles
-		for(Nemo n : this.circles) {
+		for (Nemo n : this.circles) {
 			g.setColor(n.getC());
 			g.drawRoundRect(n.getX(), n.getY(), n.getWidth(), n.getHeight(), n.getWidth(), n.getHeight());
 		}

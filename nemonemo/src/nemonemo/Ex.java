@@ -17,7 +17,7 @@ class Rect {
 		this.x = x;
 		this.y = y;
 		this.width = width;
-		
+
 		this.height = height;
 
 	}
@@ -66,8 +66,7 @@ class nemoPanel extends Util {
 
 	private int shiftX;
 	private int shiftY;
-	
-	
+
 	private boolean boo = false;
 	Rect rc = new Rect(0, 0, 0, 0);
 
@@ -82,8 +81,6 @@ class nemoPanel extends Util {
 		addKeyListener(this);
 	}
 
-	
-
 	private void setbtn() {
 		this.btn.setBounds(100, 100, 100, 100);
 		this.btn.setText("CLOSE");
@@ -96,8 +93,8 @@ class nemoPanel extends Util {
 	public void keyReleased(KeyEvent e) {
 		System.out.println(e.getKeyChar());
 		System.out.println("쉬프트클릭");
-		
-		if (e.isShiftDown() == true){
+
+		if (e.isShiftDown() == true) {
 			boo = true;
 		} else {
 			boo = false;
