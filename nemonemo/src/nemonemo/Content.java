@@ -81,6 +81,8 @@ public class Content extends Util {
 		}
 	}
 
+	
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		// TODO Auto-generated method stub
@@ -89,11 +91,11 @@ public class Content extends Util {
 		// drawpolygon(int[], int[], int)
 		// x좌표의 배열, y좌표의 배열, 꼭지점 개수)
 
-		int[] xxx = { 100, 50, 150 };
-		int[] yyy = { 100, 200, 200 };
-
-		g.setColor(Color.red);
-		g.drawPolygon(xxx, yyy, 3);
+//		int[] xxx = { 100, 50, 150 };
+//		int[] yyy = { 100, 200, 200 };
+//
+//		g.setColor(Color.red);
+//		g.drawPolygon(xxx, yyy, 3);
 
 		// 임시 객체 nemo를 픽스 -> 그리기
 		// 네모 그리기(스레드)
