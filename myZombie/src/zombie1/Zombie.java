@@ -15,7 +15,6 @@ public class Zombie extends Unit{
 		System.out.println(damage + "의 대미지");
 		target.setHp(target.getHp() - damage);
 		System.out.println(target.getName() + "의 남은 체력 : " + target.getHp());
-
 	}
 
 }

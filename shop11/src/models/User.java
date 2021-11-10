@@ -1,23 +1,28 @@
 package models;
 
 public class User {
-	public String id;
-	public int money;
-	
-	public User(String id, int mo){
+	private String id;
+	private int money;
+
+	public User(String id, int money) {
 		this.id = id;
-		this.money = mo;
-	}
-	
-	public void print() {
-		System.out.println("["+id+"]"+ "ฑÝพื : "+money);
+		this.money = money;
 	}
 
 	public String getId() {
-		return this.id;
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getMoney() {
-		return this.money;
+		return money;
 	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
 }

@@ -7,123 +7,109 @@ import java.util.Vector;
 import models.User;
 
 public class UserManager {
-	Scanner scan = new Scanner(System.in);
 	Random ran = new Random();
+	Scanner sc = new Scanner(System.in);
+	public static UserManager instance = new UserManager();
 	public Vector<User> userList = new Vector<User>();
-	public int log;
-	
-	public UserManager(){
-		inti();
+	private int userLog = -1;
+
+	public int getUserListSize() {
+		return this.userList.size();
+	}
+	public User getUser(int idx) {
+		return this.userList.get(idx);
 	}
 	
-	void inti() {
-		for(int i=0; i<10; i++) {
-			String[] a = { "김", "박", "이", "최", "정", "오" };
-			String[] b = { "철", "병", "만", "여", "아", "영" };
-			String[] c = { "수", "욱", "수", "정", "름", "희" };
-			
-			int r = ran.nextInt(a.length);
-			String name = a[r];
-			r = ran.nextInt(b.length);
-			name += b[r];
-			r= ran.nextInt(c.length); 
-			name += c[r];
-			
-			r = ran.nextInt(10000);
-			int money = r;
-			User temp = new User(name, money);
-			userList.add(temp);
-		}
+	public int getUserLog() {
+		return userLog;
 	}
-	
-	public void join() {
-		int check = -1;
-		System.out.println("아이디를 입력하세요.");
-		String id = scan.next();
-		
-		for(int i=0; i<userList.size(); i++) {
-			if(id.equals(userList.get(i).id)) {
-				check = i;
+
+	public void setUserLog(int userLog) {
+		this.userLog = userLog;
+	}
+
+	public boolean login() {
+		int ch = -1;
+		System.out.println("로그인 할 아이디 입력 : ");
+		String id = sc.next();
+		for (int i = 0; i < this.userList.size(); i++) {
+			if (id.equals(userList.get(i).getId())) {
+				ch = i;
 				break;
 			}
 		}
-		
-		if(check == -1) {
-			System.out.println(id+"님 가입을 환영합니다.");
-			User temp = new User(id, 0);
-			userList.add(temp);
-		}
-		else {
-			System.out.println("중복되는 아이디입니다.");
-			return;
-		}
-	}
-	
-	public void remove() {
-		int check = -1;
-		System.out.println("아이디를 입력하세요.");
-		String id = scan.next();
-		for(int i=0; i<userList.size(); i++) {
-			if(id.equals(userList.get(i).id)) {
-				check = i;
-				break;
-			}
-		}
-		if(check == -1) {
-			System.out.println("존재하지않는 아이디입니다.");
-		}
-		else {
-			System.out.println(""+id+"님 탈퇴되었습니다.");
-			userList.remove(check);
-		}
-	}
-	
-	public boolean logIn() {
-		int check = -1;
-		System.out.println("아이디를 입력하세요.");
-		String id = scan.next();
-		for(int i=0; i<userList.size(); i++) {
-			if(id.equals(userList.get(i).id)) {
-				check = i;
-				break;
-			}
-		}
-		if(check == -1) {
-			System.out.println("아이디를 확인해주세요.");
+		if (ch == -1) {
+			System.out.println("아이디를 확인해주세요");
 			return false;
-		}
-		else {
-			System.out.println(id+"님 환영합니다.");
-			log = check;
+		} else {
+			System.out.println(id + "님 로그인 되었습니다");
+			this.userLog = ch;
 			return true;
 		}
 	}
-	
-	public void logOut() {
-		
-		if(log != -1) {
-			System.out.println(userList.get(log).id+"님 로그아웃되었습니다.");
-			log = -1;	
-		}
-		else {
-			System.out.println("로그인시에만 가능합니다.");
+
+	public void logout() {
+		if (this.userLog != -1) {
+			System.out.println(this.userList.get(userLog).getId() + "님 로그아웃 되었습니다");
+			this.userLog = -1;
+		} else {
+			System.out.println("로그인 후 이용해주세요.");
 			return;
 		}
 	}
-	
+
+	public void join() {
+		if (this.userLog == -1) {
+			int ch = -1;
+			System.out.println("가입 할 id 를 입력하세요.");
+			String id = sc.next();
+			for (int i = 0; i < this.userList.size(); i++) {
+				if (id.equals(userList.get(i).getId())) {
+					ch = i;
+					break;
+				}
+			}
+			if (ch == -1) {
+				User temp = new User(id, 30000);
+				userList.add(temp);
+				System.out.println("가입성공!" + temp.getId() + "님 가입을 축하합니다.");
+			} else {
+				System.out.println("아이디가 중복됩니다 가입불가");
+				return;
+			}
+		} else {
+			System.out.println("로그아웃 후 가입하세요.");
+		}
+
+	}
+
 	public void print() {
-		for(int i=0; i<userList.size(); i++) {
-			System.out.print("["+i+"]");
-			userList.get(i).print();
+		for (int i = 0; i < userList.size(); i++) {
+			System.out.println("회원ID:" + userList.get(i).getId() + " 잔액 :" + userList.get(i).getMoney());
 		}
 	}
-	
-	public void printID() {
-		for(int i=0; i<userList.size(); i++) {
-			System.out.println("회원ID:"+userList.get(i).getId() + " 잔액 :"+userList.get(i).getMoney());
+
+	public void remove() {
+		if (this.userLog != -1) {
+			int ch = -1;
+			System.out.println("탈퇴할 id 입력 : ");
+			String id = sc.next();
+			for (int i = 0; i < this.userList.size(); i++) {
+				if (id.equals(userList.get(i).getId())) {
+					ch = i;
+					break;
+				}
+			}
+			if (ch == -1) {
+				System.out.println("아이디가 존재하지 않습니다.");
+			} else {
+				System.out.println(id + "님 탈퇴 완료되었습니다.");
+				userList.remove(ch);
+			}
+		} else {
+			System.out.println("로그인 후 탈퇴하세요");
 		}
+
 	}
-	
-	
-	
+
 }

@@ -1,17 +1,34 @@
 package models;
 
 public class Item {
-	public String name;
-	public int price;
-	public String category;
-	
-	public Item(String na, int pr, String cate){
-		this.name = na;
-		this.price = pr;
-		this.category = cate;
+	private String name;
+	private int price;
+	private String category;
+
+	public Item(String name, int price, String category) {
+		this.name = name;
+		this.price = price;
+		this.category = category;
 	}
-	
-	public void print() {
-		System.out.println("["+name+"]"+"["+price+"]"+"["+category+"]");
+
+	public String getName() {
+		return name;
 	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void itemPrint() {
+		System.out.println("[" + name + "]" + "[" + price + "]" + "[" + getCategory() + "]");
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 }
